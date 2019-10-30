@@ -1,9 +1,9 @@
 import java.awt.Frame;
 import java.awt.*;
 
-import edu.stuylib.input.keyboard.computer.NetKeyWindow;
-import edu.stuylib.input.keyboard.NetKeyboardInfo;
-import edu.stuylib.network.NetworkTableClient;
+import com.stuypulse.stuylib.input.keyboard.computer.NetKeyWindow;
+import com.stuypulse.stuylib.input.keyboard.NetKeyboardInfo;
+import com.stuypulse.stuylib.network.NetworkTableWrapper;
 import edu.wpi.first.networktables.*;
 
 public class NetKeyServer {

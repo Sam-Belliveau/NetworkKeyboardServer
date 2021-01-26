@@ -8,8 +8,13 @@
 
 plugins {
     id 'java'
-    id "edu.wpi.first.GradleRIO" version "2019.1.1"
+    id "edu.wpi.first.GradleRIO" version "2021.2.1"
     id 'application'
+}
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 sourceSets {
@@ -25,9 +30,22 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: "libs", includes: ['*.jar'])
-    compile wpi.deps.wpilib()
-    compile wpi.deps.vendor.java()
+
+    nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
+    nativeDesktopZip wpi.deps.wpilibJni(wpi.platforms.desktop)
+
+    implementation wpi.deps.vendor.java()
+    nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
+    nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
+
+    compile "edu.wpi.first.ntcore:ntcore-java:2021.2.1"
+    compile "edu.wpi.first.wpiutil:wpiutil-java:2021.2.1"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2021.2.1:windowsx86"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2021.2.1:windowsx86-64"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2021.2.1:linuxx86-64"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2021.2.1:osxx86-64"
+
+    implementation 'com.github.StuyPulse:StuyLib:v2021.0.4'
 }
 
 mainClassName = 'NetKeyServer'
